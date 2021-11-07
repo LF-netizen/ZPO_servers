@@ -9,6 +9,15 @@ class Product:
         self.name = name
         self.price = price
 
+    def if_name_correct(self):
+        for i in range(len(self.name) - 1):
+            if not 'A' <= self.name[i] <= 'z':
+                if '0' <= self.name[i] <= '9':
+                    for j in range(i, len(self.name) - 1):
+                        if not '0' <= self.name[j] <= '9':
+                            raise ValueError('Error')
+                    return 1
+        raise ValueError('Error')
 
     # FIXME: klasa powinna posiadać metodę inicjalizacyjną przyjmującą argumenty wyrażające nazwę produktu (typu str) i jego cenę (typu float) -- w takiej kolejności -- i ustawiającą atrybuty `name` (typu str) oraz `price` (typu float)
 
@@ -41,7 +50,7 @@ class AbstractServer:
         for el in lst:
             if condition:  # TODO: UZUPELNIC CONDITION z n_letters
                 result.append(el)
-        return result # TODO: posortowac wg rosnacej ceny
+        return result  # TODO: posortowac wg rosnacej ceny
 
     def get_all_products(self, lst: List[Product], n_letters: int):
         pass
@@ -51,6 +60,7 @@ class AbstractServer:
 class ListServer(AbstractServer):
     def __init__(self, products: List[Product]):
         super().__init__(self, products)
+        # self.product = Product
         self.products = products
 
     def get_all_products(self, lst: List[Product], n_letters: int):
@@ -61,17 +71,18 @@ class ListServer(AbstractServer):
 class MapServer(AbstractServer):
     def __init__(self, products: List[Product]):
         super().__init__(self, products)
+        # self.product = Product
         self.products: Dict[str, Product] = {product.name: product for product in products}
 
     def get_all_products(self, lst: List[Product], n_letters: int):
         return get_entries(self.products.items(), n_letters)
 
-class Client:
+
+class Client(AbstractServer):
     # FIXME: klasa powinna posiadać metodę inicjalizacyjną przyjmującą obiekt reprezentujący serwer
     def __init__(self, server: AbstractServer):
         self.server = server
 
     def get_total_price(self, n_letters: Optional[int]) -> Optional[float]:
+
         raise NotImplementedError()
-
-
