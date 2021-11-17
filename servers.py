@@ -39,7 +39,7 @@ class TooManyProductsFoundError(Exception):
         super().__init__()
 
 
-# FIXME: Każada z poniższych klas serwerów powinna posiadać:
+# FIXME: Każda z poniższych klas serwerów powinna posiadać:
 # (1) metodę inicjalizacyjną przyjmującą listę obiektów typu `Product` i ustawiającą atrybut `products` zgodnie z
 # typem reprezentacji produktów na danym serwerze,
 # (2) możliwość odwołania się do atrybutu klasowego `n_max_returned_entries` (typu int) wyrażający maksymalną
