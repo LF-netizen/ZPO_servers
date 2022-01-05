@@ -104,3 +104,4 @@ class Client:
         if not lst_of_products:
             return None
         return sum([el.price for el in lst_of_products])
+#zmiana
